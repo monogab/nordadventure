@@ -20,14 +20,14 @@ div#small {
    height30px;
    position: absolute;
    top:215px;
-  left:215px;
+   left:215px;
 }
 
 </style>
 <script>
 function jump(){
-  document.getElementById('frog').style.top = '100px';
-  setTimeout(function(){document.getElementById('frog').style.top = '215px'},500);
+  document.getElementById('frog').style.top = '50px';
+  setTimeout(function(){document.getElementById('frog').style.top = '215px'},1000);
   
 }
 
@@ -37,20 +37,35 @@ function mb(){
       pos = 600;
    }
    
+   if (pos>215 && pos<275){
+      document.getElementById('small').style.background = 'red';
+      bekapos = document.getElementById('frog').getBoundingClientRect().top;
+      if (bekapos > 200){
+        alert('Game over!');
+        return;
+      }
+      
+   } else {
+      document.getElementById('small').style.background = 'green';
+
+   }
    document.getElementById('small').style.left = (pos - 15) + "px";
-   setTimeout(function(){mb();},8);
+   setTimeout(function(){mb();},28);
 }
 </script>
 </head>
+
 <body>
+
 <h1>FROG JUMPING GAME</h1>
-<div id="big" ><img id="frog"  src="frosch.jpg" 
-alt="frog"
 
-onclick="jump()">
+<div id="big" >
 
-<div id="small" onclick="mb();">
+  <img id="frog"  src="frosch.jpg" alt="frog" onclick="jump();">
+
+  <div id="small" onclick="mb();">
 </div>
 
 </div>
+
 </body>
