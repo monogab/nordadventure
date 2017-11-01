@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+<style>
+div#big {
+	width:600px;
+	height:300px;
+	background:yellow;
+	position: relative;
+}
+div#small {
+	width:30px;
+	height:30px;
+	background:green;
+	position: absolute;
+	bottom:0px;
+	right:0px;
+	}
+#frog{
+   width:60px;
+   height30px;
+   position: absolute;
+   top:215px;
+  left:215px;
+}
+
+</style>
+<script>
+function jump(){
+  document.getElementById('frog').style.top = '100px';
+  setTimeout(function(){document.getElementById('frog').style.top = '215px'},500);
+  
+}
+
+function mb(){ 
+   var pos = document.getElementById('small').getBoundingClientRect().left;
+   if (pos<-10){
+      pos = 600;
+   }
+   
+   document.getElementById('small').style.left = (pos - 15) + "px";
+   setTimeout(function(){mb();},8);
+}
+</script>
+</head>
+<body>
+<h1>FROG JUMPING GAME</h1>
+<div id="big" ><img id="frog"  src="frosch.jpg" 
+alt="frog"
+
+onclick="jump()">
+
+<div id="small" onclick="mb();">
+</div>
+
+</div>
+</body>
