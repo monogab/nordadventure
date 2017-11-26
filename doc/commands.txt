@@ -1,0 +1,13 @@
+Commands in iterm2
+
+
+ls - list file
+
+cd - change directory 
+  examples
+  cd nordadventure
+  cd ..
+
+open - open file 
+  example 
+  open radio.html
