@@ -11,3 +11,6 @@ cd - change directory
 open - open file 
   example 
   open radio.html
+
+
+subl <filename> - start sublime editor 
