@@ -14,4 +14,6 @@ open - open file
   example 
   open radio.html
 
+
+subl <filename> - start sublime editor 
 subl . - open folder for editing in sublime
