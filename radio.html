@@ -1,76 +1,47 @@
 <!DOCTYPE>
 <head>
-<style>
-*{
-	margin: 0px;
-}
-.page-radio{
-	background-image:url("radio.jpg");
-	width : 100%;
-	height: 100vh;
-	 background-repeat: no-repeat;
-	 background-position: right top;
-	 background-size: 100%;
-}
+<style> </style>
+<link rel="stylesheet" type="text/css" href="main.css">
 
-.header{
-	background-color: black;
-	color: #c04b48;
-	font-size: 32px;
-}
-
-.pages,
-.title{
-	   display: inline;
-}
-.pages{
-	  float: right;
-}
-.pages li{
-		display: inline;
-}		
-.title{
-	  font-size: 52px; 	
-}
-.button {
-    background-color: black; 
-    border: none;
-    color: white;
-    padding: 5px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 2vh;
-    margin: 4px 2px;
-    cursor: pointer;
-
-}
-.plate .button{
-	display: block;              
-}
-.plate{
-	position: relative;
-	top: 30%;
-	left: 30%;
-	width: 8vh;
-	background-image:url("metal.png");
-}
-
-</style>
 <script>
-audio = new Audio('proba.mp3');
+var indexlist = 0;  
+
+var playlist = [
+ 'proba.mp3',
+ 'Caramel Prisoner.mp3'
+];  
+var numberOfElements = 2;
+
+reinit();
+
 function play(){
-	
 	audio.play();
-  
+}
+function pause(){
+	audio.pause();
 }
 function stop(){
-	
-	audio.pause();
-  
+  audio.pause();
+  reinit();
 }
 
+function next(){
+  indexlist = (indexlist + 1) % 2;
+  stop();
+  reinit();
+  play();
+}
+function prev(){
+  indexlist = (indexlist - 1 + numberOfElements ) % 2;
+  stop();
+  reinit();
+  play();
+}
 
+function reinit(){
+  filename = playlist[indexlist];
+  audio = new Audio(filename);
+}
 
 </script>
 </head>
@@ -78,22 +49,27 @@ function stop(){
 <body>
 	
 <div class="header">
-	<div class="title">nordadventure</div>
+	<div class="title">NordAdventure</div>
 	<ul class="pages">
-		<li>radio</li>
-		<li>
-<a href="beka.html">Frog Jumping Game</a> 
-</li>
-		<li>adventures</li>
+		<li><a href="radio.html">Radio</li>
+		<li><a href="beka.html">Frog jumping game</a> </li>
+		<li><a href="kalandok.html">Adventures</a></li>
 	</ul>
 </div>
+
 <div class="page-radio">
 
 <div class="plate">
-	<button class="button" onclick="play()">play</button>
-	<button class="button"  onclick="stop()">stop</button>
-	<button class="button">load</button>
+  <button class="button" onclick="play()">play</button>
+  <button class="button"  onclick="pause()">pause</button>
+  <button class="button" onclick="stop()">stop</button>
+</div>
+<div class="plate-2">
+  <button class="button" onclick="next()">>></button>
+  <button class="button"  onclick="prev()"><<</button>
+  
 </div>
 
 </div>
+
 </body>
