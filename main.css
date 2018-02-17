@@ -80,6 +80,10 @@
 
 .message{
   display:none;
+  font-size: 111px;
+  color:red;
+  position:absolute;
+  top:100px;
 }
 .message.visible{
   display:block;

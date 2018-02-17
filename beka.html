@@ -25,23 +25,33 @@ div#small {
 
 </style>
 <script>
+var refreshIntervalId = 0;
 function jump(){
   document.getElementById('frog').style.top = '50px';
   setTimeout(function(){document.getElementById('frog').style.top = '235px'},1000);
   
 }
 
-function mb(){ 
-   var pos = document.getElementById('small').getBoundingClientRect().left;
-   if (pos<-10){
+function start(){ 
+   clearInterval(refreshIntervalId);
+  
+   
+   
+   refreshIntervalId = setInterval(move,40);
+   
+}
+function move(){
+  document.getElementById("gameover").classList.remove('visible');
+  var pos = document.getElementById('small').getBoundingClientRect().left;
+  if (pos<-10){
       pos = 600;
    }
    
-   if (pos>235 && pos<275){
-      document.getElementById('small').style.background = 'red';
+   if (pos>215 && pos<265){
+      
       bekapos = document.getElementById('frog').getBoundingClientRect().top;
-      if (bekapos > 200){
-        
+      if (bekapos > 250){
+        document.getElementById('small').style.background = 'red';
         document.getElementById("gameover").classList.add('visible');
         return;
       }
@@ -50,8 +60,16 @@ function mb(){
       document.getElementById('small').style.background = 'green';
 
    }
-   document.getElementById('small').style.left = (pos - 15) + "px";
-   setTimeout(function(){mb();},28);
+
+  document.getElementById('small').style.left = (pos - 15) + "px";
+}
+function keydown(event){
+  console.log('event',event);
+  if (event.key == 's'){
+    start();
+  } else if (event.key == 'ArrowUp'){
+    jump();
+  }
 }
 </script>
 </head>
@@ -66,14 +84,17 @@ function mb(){
   </ul>
 </div>
 <h1>FROG JUMPING GAME</h1>
-
+<p>s - start , arrowup - jump</p>
 <div id="big" >
 
   <img id="frog"  src="frosch.png" alt="frog" onclick="jump();">
 
-  <div id="small" onclick="mb();">
+  <div id="small" onclick="start();">
 </div>
 
 </div>
 <p id="gameover" class="message">GAME OVER</p>
+<script>
+  document.body.addEventListener('keydown',keydown);
+</script>
 </body>
